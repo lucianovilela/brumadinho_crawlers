@@ -1,0 +1,21 @@
+version: '2.0'
+services:
+    
+    nutch:
+        network_mode: "host"
+        container_name: nutch
+        image: apache/nutch:release-1.15
+
+        volumes:
+            - ./nutch/urls:/root/nutch/urls
+            - ./nutch/conf:/root/nutch/conf
+            - ./nutch/crawl:/root/nutch/crawl
+
+    solr:
+      network_mode: "host"
+      container_name: solr
+      image: solr
+      ports:
+        - 8983:8983
+      volumes:
+        - ./solr:/opt/solr/server/solr/brumadinho
